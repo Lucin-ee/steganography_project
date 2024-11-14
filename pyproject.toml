@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "steganography"
+version = "0.1.0"
+description = "hiding a string into an image, decoding the image, and histogram analysis of the LSB"
+authors = ["Lucine SCHIEBER <lucine.schieber@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pillow = "^11.0.0"
+matplotlib = "^3.9.2"
+numpy = "^2.1.3"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.scripts]
+encode = "steganography_project.encode_decode:encode_message_in_image"
+decode = "steganography_project.encode_decode:decode_message_from_image"
+histogram = "steganography_project.histogram_analysis:get_lsb_histogram"
