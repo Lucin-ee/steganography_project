@@ -99,3 +99,9 @@ steganography_project/
 ## Configuration
 
 Tous les paramètres, y compris le nombre de LSB (jusqu'à 4), peuvent être configurés directement via la ligne de commande lors de l'exécution des commandes d'encodage, de décodage et d'analyse d'histogramme.
+
+### Static Code Analysis
+Ce projet utilise `flake8` pour la static code analysis. A installer via 
+```bash
+pip install flake8
+
