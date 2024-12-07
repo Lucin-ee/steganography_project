@@ -104,4 +104,11 @@ Tous les paramètres, y compris le nombre de LSB (jusqu'à 4), peuvent être con
 Ce projet utilise `flake8` pour la static code analysis. A installer via 
 ```bash
 pip install flake8
+```
+et à run avec 
+```bash
+flake8 path/to/your/code
+```
+
+
 
