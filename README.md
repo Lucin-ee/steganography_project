@@ -110,5 +110,12 @@ et à run avec
 flake8 path/to/your/code
 ```
 
+#### Pre-Commit Hook for Static Code Analysis
+Pre-commit hooks automatically run static code analysis. To set it up:
+```bash
+pip install pre-commit
+pre-commit install
+
+
 
 
