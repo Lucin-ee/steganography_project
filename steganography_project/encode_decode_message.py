@@ -1,11 +1,27 @@
+import logging
 from PIL import Image
+
+# Configure logging
+logging.basicConfig(
+    level=logging.DEBUG,  # Set the default logging level to DEBUG
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("steganography.log"),  # Log to a file
+        logging.StreamHandler()  # Log to the console
+    ]
+)
 
 def encode_message_in_image(image_path, message, output_path, lsb_count=1):
     if not (1 <= lsb_count <= 4):
+        logging.error("lsb_count must be between 1 and 4")
         raise ValueError("lsb_count must be between 1 and 4")
-    
+
+    logging.info(f"Encoding message into image: {image_path}")
+    logging.debug(f"Message: {message}")
+    logging.debug(f"LSB Count: {lsb_count}")
+
     # Convert the message to binary and add a null terminator
-    message += chr(0)  # Add a null terminator to mark the end of the message
+    message += chr(0)
     binary_message = ''.join(format(ord(char), '08b') for char in message)
     message_length = len(binary_message)
 
@@ -13,13 +29,19 @@ def encode_message_in_image(image_path, message, output_path, lsb_count=1):
     img = Image.open(image_path)
     pixels = img.load()
     width, height = img.size
-    total_capacity = width * height * 3 * lsb_count  # Total bits that can be encoded
+    total_capacity = width * height * 3 * lsb_count
+
+    logging.info(f"Image dimensions: {width}x{height}")
+    logging.debug(f"Total encoding capacity (bits): {total_capacity}")
+    logging.debug(f"Message length (bits): {message_length}")
 
     # Check if the message fits in the image
     if message_length > total_capacity:
-        print(f"Warning: The message is too large for this image. The image can hold only {total_capacity // 8} characters.")
-        print(f"Encoding as much as possible...")
-        binary_message = binary_message[:total_capacity]  # Cut the message to fit
+        logging.warning(
+            f"Message too large for the image. Can only encode {total_capacity // 8} characters. "
+            "Truncating message."
+        )
+        binary_message = binary_message[:total_capacity]
         message_length = len(binary_message)
 
     idx = 0  # Keeps track of our position in the binary message
@@ -48,12 +70,17 @@ def encode_message_in_image(image_path, message, output_path, lsb_count=1):
 
     # Save the modified image
     img.save(output_path, "PNG")
-    print(f"Message encoded successfully in {output_path}")
+    logging.info(f"Message encoded successfully in {output_path}")
+
 
 def decode_message_from_image(image_path, lsb_count=1):
     if not (1 <= lsb_count <= 4):
+        logging.error("lsb_count must be between 1 and 4")
         raise ValueError("lsb_count must be between 1 and 4")
-    
+
+    logging.info(f"Decoding message from image: {image_path}")
+    logging.debug(f"LSB Count: {lsb_count}")
+
     # Open the image and load the pixels
     img = Image.open(image_path)
     pixels = img.load()
@@ -78,5 +105,8 @@ def decode_message_from_image(image_path, lsb_count=1):
         if char == chr(0):  # Stop at the null terminator
             break
         message += char
+
+    logging.info("Message decoded successfully")
+    logging.debug(f"Decoded Message: {message}")
 
     return message
