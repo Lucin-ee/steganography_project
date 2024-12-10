@@ -74,6 +74,60 @@ Detailed documentation is available in the `docs/` directory:
 
 MIT License. See LICENSE file for details.
 
+## Development Setup
+
+### Static Code Analysis
+
+This project uses multiple static code analysis tools to ensure code quality:
+
+1. `flake8` for style guide enforcement
+2. `pylint` for code analysis
+3. `mypy` for type checking
+4. `black` for code formatting
+
+#### Installation
+
+```bash
+pip install flake8 pylint mypy black
+```
+
+#### Running Analysis
+
+You can run all static analysis tools using:
+
+```bash
+# Style check with flake8
+flake8 .
+
+# Code analysis with pylint
+pylint encode_decode_*.py histogram_analysis.py
+
+# Type checking with mypy
+mypy --strict .
+
+# Code formatting with black
+black .
+```
+
+### Pre-commit Hooks
+
+We use pre-commit hooks to automatically run static analysis before each commit.
+
+1. Install pre-commit:
+```bash
+pip install pre-commit
+```
+
+2. Install the git hooks:
+```bash
+pre-commit install
+```
+
+The hooks will now run automatically on `git commit`. You can also run them manually:
+```bash
+pre-commit run --all-files
+```
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
