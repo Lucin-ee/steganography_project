@@ -13,6 +13,18 @@ logging.basicConfig(
 
 def encode_message_in_image(image_path, message, output_path, lsb_count=1):
 
+    """
+    Encodes a secret message into an image using the least significant bits (LSB).
+
+    Args:
+        image_path (str): Path to the carrier image.
+        message (str): The secret message to encode.
+        output_path (str): Path to save the encoded image.
+        lsb_count (int, optional): Number of LSBs to use for encoding. Defaults to 1.
+
+    Returns:
+        None
+    """
 
     if not (1 <= lsb_count <= 4):
         logging.error("lsb_count must be between 1 and 4")
@@ -77,7 +89,16 @@ def encode_message_in_image(image_path, message, output_path, lsb_count=1):
 
 def decode_message_from_image(image_path, lsb_count=1):
 
-    
+    """
+    Decodes a secret message from an image using the least significant bits (LSB).
+
+    Args:
+        image_path (str): Path to the encoded image.
+        lsb_count (int, optional): Number of LSBs used for encoding. Defaults to 1.
+
+    Returns:
+        message (str): Message that was encoded        
+    """
 
     if not (1 <= lsb_count <= 4):
         logging.error("lsb_count must be between 1 and 4")
