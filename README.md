@@ -1,11 +1,13 @@
 # Steganography Project
 
-Un outil Python simple pour cacher et extraire des messages dans des images en utilisant la méthode de stéganographie LSB (Least Significant Bit). Ce projet inclut des fonctionnalités pour encoder et décoder des messages, analyser les histogrammes d'images pour détecter des données potentiellement cachées, et effectuer une stéganalyse de base.
+Un outil Python simple pour cacher et extraire des messages dans des images en utilisant la méthode de stéganographie LSB (Least Significant Bit). Ce projet inclut des fonctionnalités pour encoder et décoder des messages, analyser les histogrammes d'images pour détecter des données potentiellement cachées.
 
 ## Fonctionnalités
 
 - **Message Encoding**: Cache un message texte dans une image en utilisant un nombre spécifié de LSB
 - **Message Decoding**: Extrait un message caché d'une image
+- **Image Encoding**: Cache une image dans une image en utilisant un nombre spécifié de LSB
+- **Image Decoding**: Extrait une image cachée d'une image
 - **LSB Histogram Analysis**: Génère des histogrammes des motifs LSB dans les images pour détecter d'éventuelles données cachées
 
 ## Prérequis
