@@ -4,12 +4,43 @@ import numpy as np
 
 
 def calculate_mean_and_std(histogram, total_pixels):
+
+    """
+    Calculate the mean and standard deviation of a given histogram.
+
+    Args:
+        histogram (list): A list of histogram bins representing pixel frequencies.
+        total_pixels (int): The total number of pixels in the image.
+
+    Returns:
+        tuple: A tuple containing the mean and standard deviation of the histogram.
+    """
+
     mean = sum(histogram[i] * i for i in range(len(histogram))) / total_pixels
     variance = sum(histogram[i] * (i - mean) ** 2 for i in range(len(histogram))) / total_pixels
     std_dev = np.sqrt(variance)
     return mean, std_dev
 
 def get_lsb_histogram(image_path, lsb_count=1):
+
+    """
+    Generate the least significant bit (LSB) histogram for an image and plot the frequency distribution
+    for the last `lsb_count` bits of each color channel.
+
+    Args:
+        image_path (str): The path to the image file.
+        lsb_count (int): The number of least significant bits to use for analysis (between 1 and 4).
+
+    Returns:
+        None: Saves a histogram plot as a PNG file and prints statistics for each channel.
+    
+    Raises:
+        ValueError: If `lsb_count` is not between 1 and 4.
+    
+    Example:
+        >>> get_lsb_histogram('path/to/image.png', lsb_count=2)
+    """
+    
     if not (1 <= lsb_count <= 4):
         raise ValueError("lsb_count must be between 1 and 4")
 

@@ -12,6 +12,19 @@ logging.basicConfig(
 )
 
 def encode_image_in_image(carrier_path, secret_path, output_path):
+
+    """
+    Encodes a secret image into an image using the least significant bits (LSB).
+
+    Args:
+        carrier_path (str): Path to the carrier image.
+        secret_path (str): Path to the secret image.
+        output_path (str): Path to save the encoded image.
+
+    Returns:
+        None
+    """
+
     try:
         logging.info(f"Encoding secret image into carrier image.")
         logging.debug(f"Carrier image: {carrier_path}, Secret image: {secret_path}")
@@ -57,6 +70,18 @@ def encode_image_in_image(carrier_path, secret_path, output_path):
 
 
 def decode_image_from_image(encoded_path, output_path):
+
+    """
+    Encodes a secret image into an image using the least significant bits (LSB).
+
+    Args:
+        encoded_path (str): Path to the encoded image.
+        output_path (str): Path to save the decoded image.
+
+    Returns:
+        None
+    """
+
     try:
         logging.info(f"Decoding secret image from encoded image.")
         logging.debug(f"Encoded image: {encoded_path}")
